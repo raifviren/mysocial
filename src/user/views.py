@@ -21,6 +21,7 @@ from .constants import TWITTER_AUTHORIZE_URL, TWITTER_ACCESS_TOKEN_URL, INSTA_AU
 from .forms import LoginForm
 from .models import User
 from .utils import get_consumer_twitter, get_request_token
+from decouple import config
 
 request_token = {}
 access_token = {}
@@ -175,8 +176,8 @@ class TwitterUserTimelineView(View):
             oauth_token = request.user.twitter_oauth_token
             oauth_token_secret = request.user.twitter_oauth_token_secret
             try:
-                twitter = Twython(os.environ['TWITTER_CONSUMER_KEY'],
-                                  os.environ['TWITTER_CONSUMER_SECRET'],
+                twitter = Twython(config('TWITTER_CONSUMER_KEY'),
+                                  config('TWITTER_CONSUMER_SECRET'),
                                   oauth_token, oauth_token_secret)
                 user_timeline = twitter.get_user_timeline()
                 # print(home_timeline)
@@ -197,8 +198,8 @@ class TwitterHomeView(View):
             oauth_token = request.user.twitter_oauth_token
             oauth_token_secret = request.user.twitter_oauth_token_secret
             try:
-                twitter = Twython(os.environ['TWITTER_CONSUMER_KEY'],
-                                  os.environ['TWITTER_CONSUMER_SECRET'],
+                twitter = Twython(config('TWITTER_CONSUMER_KEY'),
+                                  config('TWITTER_CONSUMER_SECRET'),
                                   oauth_token, oauth_token_secret)
                 user_timeline = twitter.get_home_timeline()
                 data = user_timeline
@@ -219,8 +220,8 @@ class TwitterFavListView(View):
             oauth_token = request.user.twitter_oauth_token
             oauth_token_secret = request.user.twitter_oauth_token_secret
             try:
-                twitter = Twython(os.environ['TWITTER_CONSUMER_KEY'],
-                                  os.environ['TWITTER_CONSUMER_SECRET'],
+                twitter = Twython(config('TWITTER_CONSUMER_KEY'),
+                                  config('TWITTER_CONSUMER_SECRET'),
                                   oauth_token, oauth_token_secret)
                 data = twitter.get_favorites()
                 return render(request, self.template_name, {'data': data})
@@ -240,7 +241,7 @@ class InstaView(View):
     template_name = 'twitter_index.html'
 
     def get(self, request, *args, **kwargs):
-        client_id = os.environ['INSTA_CLIENT_ID']
+        client_id = config('INSTA_CLIENT_ID')
         return redirect(
             INSTA_AUTHORIZE_URL + "?client_id=%s&redirect_uri=%s&response_type=code" % (
                 client_id, INSTA_CALLBACK_URL))
@@ -256,8 +257,8 @@ class InstaCallbackView(View):
             return HttpResponseRedirect(reverse('mysocial-home'))
         else:
             data = {
-                'client_id': os.environ['INSTA_CLIENT_ID'],
-                'client_secret': os.environ['INSTA_SECRET'],
+                'client_id': config('INSTA_CLIENT_ID'),
+                'client_secret': config('INSTA_SECRET'),
                 'grant_type': 'authorization_code',
                 'redirect_uri': INSTA_CALLBACK_URL,
                 'code': request.GET.get('code')

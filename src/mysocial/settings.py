@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,12 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
+SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if os.environ.get('DEBUG') in ['FALSE', False, None] else True
+DEBUG = False if config('DEBUG') in ['FALSE', False, None] else True
 # '::::' seperated string for allowed hosts
-ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split('::::') if os.environ.get('ALLOWED_HOSTS') else []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS').split('::::') if config('ALLOWED_HOSTS') else []
 
 # Application definition
 
@@ -56,7 +56,7 @@ print(BASE_DIR)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR + '/templates','/home/ubuntu/webapp/'],
+        'DIRS': [BASE_DIR + '/templates', '/home/ubuntu/webapp/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,7 +103,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'formatter': 'verbose',
-            'filename': os.environ['LOG_FILE_NAME']
+            'filename': config('LOG_FILE_NAME')
         },
     },
     'loggers': {
@@ -154,7 +154,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 
-if os.environ.get('BRANCH', 'LOCAL') == 'LOCAL':
+if config('BRANCH', 'LOCAL') == 'LOCAL':
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, "static"),
     ]

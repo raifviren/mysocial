@@ -10,14 +10,14 @@ import urllib
 import urllib.parse
 
 import oauth2
-
+from decouple import config
 from .constants import TWITTER_REQUEST_TOKEN_URL
 
 
 def get_consumer_twitter():
     # Set the consumer key and secret
-    CONSUMER_KEY = os.environ['TWITTER_CONSUMER_KEY']
-    CONSUMER_SECRET = os.environ['TWITTER_CONSUMER_SECRET']
+    CONSUMER_KEY = config('TWITTER_CONSUMER_KEY')
+    CONSUMER_SECRET = config('TWITTER_CONSUMER_SECRET')
 
     # Create a oauth2.Consumer object that wraps the parameters for the calls to the HTTP endpoints
     consumer = oauth2.Consumer(CONSUMER_KEY, CONSUMER_SECRET)
