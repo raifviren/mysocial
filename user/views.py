@@ -22,7 +22,7 @@ from .forms import LoginForm
 from .models import User
 from .utils import get_consumer_twitter, get_request_token
 from decouple import config
-
+from django.db import IntegrityError
 request_token = {}
 access_token = {}
 oauth_token = ''
@@ -54,16 +54,26 @@ class LoginView(View):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = authenticate(
-                username=username,
-                password=password
-            )
-            print(user)
-            if user is None:
-                user = User.objects.create(username=username, password=password)
-                return render(request, 'index.html', {'user': user})
-            else:
-                return render(request, 'index.html', {'user': user})
+            try:
+                User.objects.get(username=username)
+                user = authenticate(
+                    username=username,
+                    password=password
+                )
+                print(user)
+                if user is None:
+                    return render(request, self.template_name, {'form.password.errors': "Incorrect Password"})
+                else:
+                    return render(request, 'index.html', {'user': user})
+            except User.DoesNotExist:
+                try:
+                    user = User.objects.create(username=username, password=password)
+                    if user is not None:
+                        return render(request, 'index.html', {'user': user})
+                except IntegrityError:
+                    return render(request, self.template_name, {'form.username.errors': "Username Already Taken"})
+
+
         else:
             return render(request, self.template_name, {'form.non_field_errors': "Invalid Request"})
 
