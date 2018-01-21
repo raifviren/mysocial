@@ -157,7 +157,7 @@ footer a {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  font-size: 30px;
+  font-size: 35px;
 }
 #social-test .social {
   padding-left: 0px;
@@ -166,13 +166,13 @@ footer a {
   display: inline-block;
 }
 #social-test li a {
-  color: rgba(255, 255, 255, 0.6);
+  /*color: rgba(255, 255, 255, 0.6);*/
   border-radius: 6px;
-  list-style-type: none;
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-  line-height: 100px;
+  /*list-style-type: none;*/
+  /*display: inline-block;*/
+  /*width: 100px;*/
+  /*height: 100px;*/
+  /*line-height: 100px;*/
   padding: 1%;
   border: 1px solid rgba(255, 255, 255, 0.6);
   cursor: pointer;
@@ -192,7 +192,7 @@ footer a {
 }
 .credits,
 .credits a {
-  font-size: 20px;
+  font-size: 30px;
   font-family: Open Sans;
-  color: rgba(255, 255, 255, 0.6);
+  /*color: rgba(255, 255, 255, 0.6);*/
 }
