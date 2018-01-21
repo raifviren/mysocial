@@ -24,7 +24,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if config('DEBUG') in ['FALSE', False, None] else True
 # '::::' seperated string for allowed hosts
-ALLOWED_HOSTS = config('ALLOWED_HOSTS').split('::::') if config('ALLOWED_HOSTS') else []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
