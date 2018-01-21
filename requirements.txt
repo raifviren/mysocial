@@ -3,10 +3,12 @@ chardet==3.0.4
 click==6.7
 Django==2.0.1
 djangorestframework==3.7.7
+gunicorn==19.7.1
 httplib2==0.10.3
 idna==2.6
 oauth2==1.9.0.post1
 oauthlib==2.0.6
+python-decouple==3.1
 python-dotenv==0.7.1
 pytz==2017.3
 requests==2.18.4
