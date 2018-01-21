@@ -143,3 +143,4 @@ MEDIA_ROOT = os.path.normpath(os.path.join(SITE_ROOT, 'media'))
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
+LOGIN_REDIRECT_URL = '/mysocial/index/'

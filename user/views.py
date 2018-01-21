@@ -143,10 +143,13 @@ class TwitterCallbackView(View):
         # Create a standard dictionary from the response body, using parse_qsl as a convenience to parse the query string in the response
         access_token = dict(urllib.parse.parse_qsl(content))
         print(access_token)
-        user_id = access_token[b'user_id'].decode("utf-8")
-        screen_name = access_token[b'screen_name'].decode("utf-8")
-        oauth_token = access_token[b'oauth_token'].decode("utf-8")
-        oauth_token_secret = access_token[b'oauth_token_secret'].decode("utf-8")
+        if b'user_id' in access_token:
+            user_id = access_token[b'user_id'].decode("utf-8")
+            screen_name = access_token[b'screen_name'].decode("utf-8")
+            oauth_token = access_token[b'oauth_token'].decode("utf-8")
+            oauth_token_secret = access_token[b'oauth_token_secret'].decode("utf-8")
+        else:
+            return HttpResponseRedirect(reverse('mysocial-index'))
         try:
             user = User.objects.get(twitter_user_id=user_id)
         except User.DoesNotExist:
