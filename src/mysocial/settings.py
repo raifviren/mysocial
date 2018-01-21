@@ -132,11 +132,16 @@ if config('BRANCH', 'LOCAL') == 'LOCAL':
     ]
     # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 else:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static"),
+    ]
     STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'static'))
+
 
 SITE_NAME = os.path.basename(DJANGO_ROOT)
 
 MEDIA_ROOT = os.path.normpath(os.path.join(SITE_ROOT, 'media'))
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
