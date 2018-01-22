@@ -165,6 +165,22 @@ footer a {
 #social-test li {
   display: inline-block;
 }
+.center #social-test li a {
+  /*color: rgba(255, 255, 255, 0.6);*/
+  border-radius: 6px;
+  /*list-style-type: none;*/
+  /*display: inline-block;*/
+  /*width: 100px;*/
+  /*height: 100px;*/
+  /*line-height: 100px;*/
+  padding: 1%;
+  /*border: 1px solid rgba(255, 255, 255, 0.6);*/
+  cursor: pointer;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  transition: ease .3s;
+    background-image: url('/static/login/images/bg-01.jpg');
+}
 #social-test li a {
   /*color: rgba(255, 255, 255, 0.6);*/
   border-radius: 6px;
