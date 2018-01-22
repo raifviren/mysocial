@@ -82,6 +82,8 @@ class TwitterView(View):
     template_name = 'twitter_index.html'
 
     def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            logout(request)
         global oauth_token
         global oauth_token_secret
         oauth_token, oauth_token_secret = get_request_token()
@@ -259,6 +261,8 @@ class InstaView(View):
     template_name = 'twitter_index.html'
 
     def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            logout(request)
         client_id = config('INSTA_CLIENT_ID')
         return redirect(
             INSTA_AUTHORIZE_URL + "?client_id=%s&redirect_uri=%s&response_type=code" % (
