@@ -59,6 +59,9 @@ class User(AbstractUser, BaseClass):
                                     default='+91'
                                     )
     twitter_oauth_token = models.CharField(max_length=100, null=True, blank=True)
+    insta_access_token = models.CharField(max_length=100, null=True, blank=True)
     twitter_oauth_token_secret = models.CharField(max_length=100, null=True, blank=True)
     twitter_user_id = models.CharField(max_length=50, null=True, blank=True, unique=True, db_index=True)
+    insta_user_id = models.CharField(max_length=50, null=True, blank=True, unique=True, db_index=True)
     twitter_screen_name = models.CharField(max_length=100, null=True, blank=True)
+    insta_full_name = models.CharField(max_length=100, null=True, blank=True)

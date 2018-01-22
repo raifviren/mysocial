@@ -287,14 +287,14 @@ class InstaCallbackView(View):
             full_name = user['full_name']
             username = user['username']
             try:
-                user = User.objects.get(twitter_user_id=user_id)
+                user = User.objects.get(insta_user_id=user_id)
             except User.DoesNotExist:
                 user = User.objects.create_user(
                     username='%s@instagram.com' % username,
                     password=user_id,
-                    twitter_screen_name=full_name,
-                    twitter_user_id=user_id,
-                    twitter_oauth_token=access_token)
+                    insta_full_name=full_name,
+                    insta_user_id=user_id,
+                    insta_access_token=access_token)
             user.twitter_oauth_token = access_token
             user.save()
 
@@ -316,7 +316,7 @@ class InstaMediaView(View):
             print(request.GET.get('error_reason'), request.GET.get('error_description'))
             return HttpResponseRedirect(reverse('mysocial-insta-timeline'))
         else:
-            access_token = request.user.twitter_oauth_token
+            access_token = request.user.insta_access_token
             print(access_token)
             try:
                 res = requests.get(
@@ -345,7 +345,7 @@ class InstaTimelineView(View):
             print(request.GET.get('error_reason'), request.GET.get('error_description'))
             return HttpResponseRedirect(reverse('mysocial-insta-timeline'))
         else:
-            access_token = request.user.twitter_oauth_token
+            access_token = request.user.insta_access_token
             print(access_token)
             try:
                 res = requests.get(
@@ -371,7 +371,7 @@ class InstaLikedView(View):
             print(request.GET.get('error_reason'), request.GET.get('error_description'))
             return HttpResponseRedirect(reverse('mysocial-insta-timeline'))
         else:
-            access_token = request.user.twitter_oauth_token
+            access_token = request.user.insta_access_token
             print(access_token)
             try:
                 res = requests.get(
