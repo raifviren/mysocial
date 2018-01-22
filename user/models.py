@@ -58,7 +58,7 @@ class User(AbstractUser, BaseClass):
                                     help_text=_('Enter country code'),
                                     default='+91'
                                     )
-    twitter_oauth_token = models.CharField(max_length=50, null=True, blank=True)
-    twitter_oauth_token_secret = models.CharField(max_length=50, null=True, blank=True)
-    twitter_user_id = models.CharField(max_length=20, null=True, blank=True, unique=True, db_index=True)
-    twitter_screen_name = models.CharField(max_length=50, null=True, blank=True)
+    twitter_oauth_token = models.CharField(max_length=100, null=True, blank=True)
+    twitter_oauth_token_secret = models.CharField(max_length=100, null=True, blank=True)
+    twitter_user_id = models.CharField(max_length=50, null=True, blank=True, unique=True, db_index=True)
+    twitter_screen_name = models.CharField(max_length=100, null=True, blank=True)
