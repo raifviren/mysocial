@@ -185,7 +185,7 @@ footer a {
 }
 #social-test li a:hover {
   color: #ffffff;
-  border: 1px solid #ffffff;
+  /*border: 1px solid #ffffff;*/
 }
 .social:hover > li {
   opacity: 0.5;
