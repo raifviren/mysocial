@@ -174,11 +174,12 @@ footer a {
   /*height: 100px;*/
   /*line-height: 100px;*/
   padding: 1%;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  /*border: 1px solid rgba(255, 255, 255, 0.6);*/
   cursor: pointer;
   margin-left: 10px;
   margin-bottom: 20px;
   transition: ease .3s;
+    background-image: url('/static/login/images/bg-01.jpg');
 }
 #social-test li a:hover {
   color: #ffffff;
@@ -194,5 +195,6 @@ footer a {
 .credits a {
   font-size: 30px;
   font-family: Open Sans;
+    color:rgba(19, 17, 17, 0.6);
   /*color: rgba(255, 255, 255, 0.6);*/
 }

@@ -68,7 +68,10 @@
                     {% if media %}
                         {% if media.type == 'image' or media.type == 'carousel' %}
                             <img src="{{ media.images.standard_resolution.url }}" title="banner1">
-                            <h3><a href="#">{{ media.caption.text }}</a></h3>
+                            {% if media.caption %}
+                                <h3><a href="#">{{ media.caption.text }}</a></h3>
+
+                            {% endif %}
                             </div>
                             <div class="clear"></div>
                         {% elif media.type == 'video' %}
@@ -76,7 +79,9 @@
                                 <source src="{{ media.videos.standard_resolution.url }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                            <h3><a href="#">{{ media.caption.text }}</a></h3>
+                            {% if media.caption %}
+                                <h3><a href="#">{{ media.caption.text }}</a></h3>
+                            {% endif %}
                             </div>
                             <div class="clear"></div>
 
@@ -93,10 +98,15 @@
                     {% for c in comments %}
                         <div class="grid1_of_2">
                             <div class="grid_img">
+                                {% if c.from %}
+
                                 <a href=""><img src="{{ c.from.profile_picture }}" alt=""></a>
+                                {% endif %}
                             </div>
                             <div class="grid_text">
+                                {% if c.from %}
                                 <h4 class="style1 list"><a href="#">{{ c.from.username }}</a></h4>
+                                {% endif %}
                                 <h3 class="style">epoch time {{ c.created_time }}</h3>
                                 <p class="para top"> {{ c.text }}</p>
                                 <a href="" class="btn1">Click to Reply</a>
