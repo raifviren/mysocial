@@ -57,41 +57,15 @@
 
         <div class="single-page">
             <div>
-                <div class="center">
-                <div id="social-test" style="background-image: url('/static/login/images/bg-01.jpg');">
+                 <div class="center">
+  <div id="social-test" style="background-image: url('/static/login/images/bg-01.jpg');">
+  <ul class="social">
+    <li><a href="{% url 'mysocial-insta-timeline' %}"><i class="fa fa-instagram" aria-hidden="true"></i>Back</a></li>
 
-                    <p class="credits"><a href="{% url 'mysocial-home' %}">Home</a></p>
+  </ul>
+
+  </div>
                 </div>
-                    <div class="center">
-            </div>
-            <div class="clear"></div>
-            <div class="single-page-artical">
-                <div class="artical-content">
-                    {% if media %}
-                        {% if media.type == 'image' or media.type == 'carousel' %}
-                            <img src="{{ media.images.standard_resolution.url }}" title="banner1">
-                            {% if media.caption %}
-                                <h3><a href="#">{{ media.caption.text }}</a></h3>
-
-                            {% endif %}
-                            </div>
-                            <div class="clear"></div>
-                        {% elif media.type == 'video' %}
-                            <video width="640" height="640" controls>
-                                <source src="{{ media.videos.standard_resolution.url }}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            {% if media.caption %}
-                                <h3><a href="#">{{ media.caption.text }}</a></h3>
-                            {% endif %}
-                            </div>
-                            <div class="clear"></div>
-
-                        {% endif %}
-                    {% else %}
-                        <p>No DATA.</p>
-                    {% endif %}
-        </div>
         <!---start-comments-section--->
         <div class="comment-section">
             <div class="grids_of_2">
