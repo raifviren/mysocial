@@ -137,7 +137,7 @@ class TwitterCallbackView(View):
 
     def get(self, request, *args, **kwargs):
         if 'oauth_verifier' not in request.GET:
-            logout(request)
+            # logout(request)
             return HttpResponseRedirect(reverse('mysocial-index'))
         print(request)
         consumer = get_consumer_twitter()
@@ -160,7 +160,7 @@ class TwitterCallbackView(View):
             oauth_token = access_token[b'oauth_token'].decode("utf-8")
             oauth_token_secret = access_token[b'oauth_token_secret'].decode("utf-8")
         else:
-            logout(request)
+            # logout(request)
             return HttpResponseRedirect(reverse('mysocial-index'))
         try:
             user = User.objects.get(twitter_user_id=user_id)
@@ -201,7 +201,7 @@ class TwitterUserTimelineView(View):
             except Exception:
                 return HttpResponseRedirect(reverse('mysocial-twitter-home'))
         else:
-            logout(request)
+            # logout(request)
             return HttpResponseRedirect(reverse('mysocial-index'))
 
 
@@ -223,7 +223,7 @@ class TwitterHomeView(View):
             except Exception:
                 return HttpResponseRedirect(reverse('mysocial-home'))
         else:
-            logout(request)
+            # logout(request)
             return HttpResponseRedirect(reverse('mysocial-index'))
 
 
@@ -245,7 +245,7 @@ class TwitterFavListView(View):
             except Exception:
                 return HttpResponseRedirect(reverse('mysocial-twitter-home'))
         else:
-            logout(request)
+            # logout(request)
             return HttpResponseRedirect(reverse('mysocial-index'))
 
 
@@ -300,7 +300,7 @@ class InstaCallbackView(View):
                     insta_full_name=full_name,
                     insta_user_id=user_id,
                     insta_access_token=access_token)
-            user.twitter_oauth_token = access_token
+            user.insta_access_token = access_token
             user.save()
 
             user = authenticate(username='%s@instagram.com' % username,
